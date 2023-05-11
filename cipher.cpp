@@ -98,7 +98,9 @@ void Cipher(const u_int8_t in[], u_int8_t out[], u_int8_t w[]) {
     AddRoundKey(state, w, Nr);
 
     // 结束
-    for (int i = 0; i < 16; i++) {
-        out[i] = state[i];
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < Nb; j++) {
+            out[i + 4 * j] = state[j + i * Nb];
+        }
     }
 }

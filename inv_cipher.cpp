@@ -60,8 +60,10 @@ void InvMixColumns(u_int8_t state[]) {
 
 void InvCipher(const u_int8_t in[], u_int8_t out[], u_int8_t w[]) {
     u_int8_t state[16];
-    for (int i = 0; i < 16; i++) {
-        state[i] = in[i];
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < Nb; j++) {
+            state[j + i * Nb] = in[i + 4 * j];
+        }
     }
 
     AddRoundKey(state, w, Nr);
@@ -81,3 +83,18 @@ void InvCipher(const u_int8_t in[], u_int8_t out[], u_int8_t w[]) {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
